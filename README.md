@@ -38,3 +38,7 @@ for name in names:
         )               # returns success/failure message
 W.close()
 ```
+
+## Can I run this in the background?
+
+Logging in requires you to manually scan the QR code with your WhatsApp mobile app, but after that, the script can be left to run on its own :)
