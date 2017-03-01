@@ -1,4 +1,4 @@
-## Automatically send WhatsApp messages
+# Automatically send WhatsApp messages
 
 ```python
 from WhatsBlaster import WhatsBlaster
@@ -12,3 +12,29 @@ W.close()
 ```
 
 Requires selenium (`pip install selenium`), and driver may need some configuration. Tested and works on MacOS with Google Chrome.
+
+## Mass-messaging
+
+I personally use `pandas` to iterate through a spreadsheet when notifying >60 club members about student events. But it's just as easy to accomplish a message blast like this:
+
+```python
+from WhatsBlaster import WhatsBlaster
+
+names = [
+    "Mickey Mouse",
+    "Minnie Mouse",
+    "Donald Duck",
+    "Daisy Duck",
+    "Goofy",
+    "Pluto",
+    "Boo Boo Chicken"
+]
+
+W = WhatsBlaster()
+for name in names:
+    print W.send_message(
+        name,           # exact WhatsApp contact name
+        "Hello!"        # message to send
+        )               # returns success/failure message
+W.close()
+```
