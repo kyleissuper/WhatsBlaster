@@ -37,7 +37,7 @@ class WhatsBlaster:
         try:
             element = WebDriverWait(driver, 10).until(
                     lambda driver: driver.find_element_by_css_selector(
-                        ".pane-chat span[title='{}']".format(contact_name)
+                        ".pane-chat [title='{}']".format(contact_name)
                         ))
         except:
             return "Failure: could not load chat with contact {}.".format(contact_name)

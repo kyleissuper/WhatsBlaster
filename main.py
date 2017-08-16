@@ -12,6 +12,7 @@ with open('message.txt', 'r') as message_file:
 print('Reading recipient list')
 with open('recipient_list.txt', 'r') as recipient_list:
     for recipient in recipient_list:
+        print('Attempt to send to ' + recipient.strip())
         print W.send_message(recipient.strip(), message)
 
 W.close()
