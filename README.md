@@ -3,7 +3,7 @@
 ```python
 from WhatsBlaster import WhatsBlaster
 
-W = WhatsBlaster()
+W = WhatsBlaster(path_to_chromedriver)
 print W.send_message(
     "Mickey Mouse", # exact WhatsApp contact name
     "Hello!"        # message to send
@@ -30,7 +30,7 @@ names = [
     "Boo Boo Chicken"
 ]
 
-W = WhatsBlaster()
+W = WhatsBlaster(path_to_chromedriver)
 for name in names:
     print W.send_message(
         name,           # exact WhatsApp contact name
