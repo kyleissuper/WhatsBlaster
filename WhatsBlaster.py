@@ -6,10 +6,10 @@ import time
 
 class WhatsBlaster:
 
-    def __init__(self):
+    def __init__(self, chromedriver_path):
         options = webdriver.ChromeOptions()
         options.add_argument("--force-device-scale-factor=1")
-        self.driver = webdriver.Chrome('/Users/juholee/chromedriver', chrome_options=options)
+        self.driver = webdriver.Chrome(chromedriver_path, chrome_options=options)
         self.driver.get("https://web.whatsapp.com")
         print "Login, and wait for app to load."
         raw_input("Then, hit enter to continue. ")
