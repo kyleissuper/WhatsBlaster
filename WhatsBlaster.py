@@ -56,6 +56,6 @@ class WhatsBlaster:
 
 
 if __name__ == '__main__':
-    W = WhatsBlaster()
+    W = WhatsBlaster('./chromedriver')
     print W.send_message("Mickey Mouse", "Hello!")
     W.close()
