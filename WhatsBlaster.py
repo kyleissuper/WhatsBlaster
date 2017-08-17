@@ -6,10 +6,10 @@ import time
 
 class WhatsBlaster:
 
-    def __init__(self):
+    def __init__(self, chromedriver_path):
         options = webdriver.ChromeOptions()
         options.add_argument("--force-device-scale-factor=1")
-        self.driver = webdriver.Chrome('./chromedriver', chrome_options=options)
+        self.driver = webdriver.Chrome(chromedriver_path, chrome_options=options)
         self.driver.get("https://web.whatsapp.com")
         print "Login, and wait for app to load."
         raw_input("Then, hit enter to continue. ")
@@ -20,7 +20,7 @@ class WhatsBlaster:
     def send_message(self, contact_name, message, timeout=10):
         driver = self.driver
         # Find contact
-        search = driver.find_element_by_css_selector(".input.input-search")
+        search = driver.find_element_by_css_selector("input.input-search")
         search.send_keys(contact_name)
         try:
             element = WebDriverWait(driver, 10).until(
@@ -30,13 +30,14 @@ class WhatsBlaster:
         except:
             return "Failure: could not find contact {}.".format(contact_name)
         # Load chat
+        time.sleep(2)
         driver.find_element_by_css_selector(
                 "span[title='{}']".format(contact_name)
                 ).click()
         try:
             element = WebDriverWait(driver, 10).until(
                     lambda driver: driver.find_element_by_css_selector(
-                        ".pane-chat span[title='{}']".format(contact_name)
+                        ".pane-chat [title='{}']".format(contact_name)
                         ))
         except:
             return "Failure: could not load chat with contact {}.".format(contact_name)
@@ -55,6 +56,6 @@ class WhatsBlaster:
 
 
 if __name__ == '__main__':
-    W = WhatsBlaster()
+    W = WhatsBlaster('./chromedriver')
     print W.send_message("Mickey Mouse", "Hello!")
     W.close()
